@@ -5,3 +5,5 @@ NfcReader Simple App
 -----------------
 
 Simple app that change the behaviour of sensors that can detect light or movement. The app read the sensor's ID by a NFC tag and send a request to a Node.js server. The server executes the suitable command to change this behaviour.
+
+[TinyOS sensor's source](https://github.com/jjlabrador/Sense).
