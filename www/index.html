@@ -8,17 +8,23 @@
 		<div id="messageDiv"></div>
 		</div>
 		<script type="text/javascript" src="cordova.js"></script>
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript">
 			app.initialize();
 		</script>
-	<h2>Seleccionar sensor a utilizar</h2>
-	<form method="get">
-  		<select>
-		  <option value="luz">Luz</option>
-		  <option value="acelerometro">Aceler&oacute;metro</option>
-		</select>
-  		<input type="submit" value="Aceptar">
+	<div></div>
+	<br>
+	<form id="myForm">
+		IP: <input type="text" id="ip"><br>
+		Puerto: <input type="text" id="port"><br><br>
+		
+		<p>Sensor a utilizar:</p>
+		<input type="radio" name="t" value="0" checked="checked">Aceler&oacute;metro<br>
+		<input type="radio" name="t" value="1">Luz<br><br>
+  		<center>
+  			<input type="button" value="Aceptar" onclick="app.getForm()">
+		</center>
 	</form>
 	</body>
 </html>

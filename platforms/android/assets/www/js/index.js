@@ -1,4 +1,6 @@
 var app = {
+	
+	moteID: "",
 /*
 	Application constructor
 */	
@@ -23,7 +25,7 @@ var app = {
 			// tag successfully scanned
 			function (status) {
 				// listener successfully initialized
-				app.display("Tap a tag to read its id number.");
+				app.display("Acerca un mote para leer su ID.");
 			},
 			function (error) {
 				// listener fails to initialize
@@ -38,7 +40,13 @@ var app = {
 */
 	onNfc: function(nfcEvent) {
 		var tag = nfcEvent.tag;
-		app.display("Read tag: " + nfc.bytesToHexString(tag.id));
+		moteID = nfc.bytesToHexString(tag.id);
+		var tag1 = "041276c2613e80";
+		var tag2 = "042b75c2613e80";
+		if (moteID == tag1)
+			app.display("Mote ID: 1");
+		else if (moteID == tag2)
+			app.display("Mote ID: 2");
 	},
 
 /*
@@ -56,6 +64,36 @@ var app = {
 */
 	clear: function() {
 		messageDiv.innerHTML = "";
+	},
+	
+	getForm: function() {
+		var ip = $('#ip').val();
+		var port = $('#port').val();
+		var tag;
+		var tag1 = "041276c2613e80";
+		var tag2 = "042b75c2613e80";
+		
+		if (moteID == tag1)
+			tag = 1;
+		else if (moteID == tag2)
+			tag = 2;
+		
+		var type = $('input[name=t]:checked', '#myForm').val();
+		var myURL = "http://" + "10.213.3.204" + ":" + "3000" + "/?tag=" + tag + "&type=" + type;
+		//alert(myURL);
+		$.ajax({
+			type: 'GET',
+			//data: "hola",
+			url: myURL,
+			success: function(){
+				//console.log(data);
+				alert('Peticion enviada');
+			},
+			error: function(){
+				//console.log(data);
+				alert('Error al enviar la peticion');
+			}
+		});
 	}
 	
 }; // end of app
